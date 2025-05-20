@@ -13,6 +13,9 @@ const router = Router();
  * @swagger
  * /api/todo/addtodo:
  *   post:
+ *          tags:
+ *        - todo
+ *
  *     summary: 투두 추가
  *     requestBody:
  *       content:
@@ -45,6 +48,9 @@ router.post("/todo/addtodo", addTodo);
  * @swagger
  * /api/todo/updatecategory:
  *   patch:
+ *          tags:
+ *        - todo
+ *
  *     summary: 투두 수정
  *     requestBody:
  *       content:
@@ -77,6 +83,9 @@ router.patch("/todo/updatecategory", updateTodoCategory);
  * @swagger
  * /api/todo/deletetodo:
  *   delete:
+ *          tags:
+ *        - todo
+ *
  *     summary: 투두 삭제
  *     requestBody:
  *       content:
@@ -96,6 +105,9 @@ router.delete("/todo/deletetodo", deleteTodo);
  * @swagger
  * /api/todo/bringtodo:
  *   post:
+ *          tags:
+ *        - todo
+ *
  *     summary: 특정 날짜의 투두 불러오기
  *     requestBody:
  *       content:
@@ -116,6 +128,9 @@ router.post("/todo/bringtodo", bringTodo);
  * @swagger
  * /api/todo/bringtodonum:
  *   get:
+ *          tags:
+ *        - todo
+ *
  *     summary: 해결한 투두 수 가져오기
  *     responses:
  *       200:

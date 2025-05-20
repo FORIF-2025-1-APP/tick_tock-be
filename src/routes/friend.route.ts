@@ -12,6 +12,8 @@ const router = Router();
  * @swagger
  * /api/friend/request:
  *   post:
+ *          tags:
+ *        - friend
  *     summary: 친구 요청 보내기
  *     requestBody:
  *       required: true
@@ -33,6 +35,8 @@ router.post("/friend/request", addFriend);
  * @swagger
  * /api/friend/{friendId}:
  *   delete:
+ *          tags:
+ *        - friend
  *     summary: 친구 삭제
  *     parameters:
  *       - name: friendId
@@ -50,6 +54,8 @@ router.delete("/friend/:friendId", deleteFriend);
  * @swagger
  * /api/friend:
  *   get:
+ *          tags:
+ *        - friend
  *     summary: 친구 목록 조회
  *     responses:
  *       200:
@@ -61,6 +67,8 @@ router.get("/friend", getFriends);
  * @swagger
  * /api/friend/schedule:
  *   get:
+ *         tags:
+ *        - friend
  *     summary: 친구 일정 조회
  *     responses:
  *       200:

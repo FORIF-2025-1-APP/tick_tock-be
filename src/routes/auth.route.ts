@@ -18,6 +18,8 @@ const router = Router();
  * @swagger
  * /api/auth/register:
  *   post:
+ *       tags:
+ *        - auth
  *     summary: 회원가입
  *     requestBody:
  *       required: true
@@ -42,6 +44,8 @@ router.post("/register", register);
  * @swagger
  * /api/auth/checkemail:
  *   post:
+ *       tags:
+ *        - auth
  *     summary: 이메일 중복 확인
  *     requestBody:
  *       content:
@@ -61,6 +65,8 @@ router.post("/checkemail", checkEmail);
  * @swagger
  * /api/auth/login:
  *   post:
+ *      tags:
+ *        - auth
  *     summary: 로그인
  *     requestBody:
  *       required: true
@@ -84,6 +90,8 @@ router.post("/login", login);
  * @swagger
  * /api/auth/google:
  *   post:
+ *      tags:
+ *        - auth
  *     summary: 구글 로그인
  *     requestBody:
  *       content:
@@ -103,6 +111,8 @@ router.post("/google", googleLogin);
  * @swagger
  * /api/auth/resetpassword:
  *   post:
+ *      tags:
+ *        - auth
  *     summary: 비밀번호 찾기
  *     requestBody:
  *       content:
