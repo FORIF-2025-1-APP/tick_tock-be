@@ -42,7 +42,26 @@ router.post("/register", register);
  * @swagger
  * /api/auth/checkemail:
  *   post:
- *     summary: 회원가입
+ *     summary: 이메일 중복 확인
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: 중복 여부 반환
+ */
+router.post("/checkemail", checkEmail);
+
+/**
+ * @swagger
+ * /api/auth/login:
+ *   post:
+ *     summary: 로그인
  *     requestBody:
  *       required: true
  *       content:
@@ -54,16 +73,51 @@ router.post("/register", register);
  *                 type: string
  *               password:
  *                 type: string
- *               username:
+ *     responses:
+ *       200:
+ *         description: 로그인 성공
+ *       401:
+ *         description: 로그인 실패
+ */
+router.post("/login", login);
+/**
+ * @swagger
+ * /api/auth/google:
+ *   post:
+ *     summary: 구글 로그인
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               idToken:
  *                 type: string
  *     responses:
- *       201:
- *         description: 회원가입 성공
+ *       200:
+ *         description: 구글 로그인 성공
  */
-router.post("/checkemail", checkEmail);
 
-router.post("/login", login);
 router.post("/google", googleLogin);
+/**
+ * @swagger
+ * /api/auth/resetpassword:
+ *   post:
+ *     summary: 비밀번호 찾기
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: 임시 비밀번호 전송됨
+ *       404:
+ *         description: 해당 이메일 없음
+ */
 router.post("/resetpassword", resetPassword); // 비밀번호 변경
 
 export default router;
