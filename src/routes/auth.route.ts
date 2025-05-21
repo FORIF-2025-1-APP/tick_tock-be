@@ -18,7 +18,7 @@ const router = Router();
  * @swagger
  * /api/auth/register:
  *   post:
- *       tags:
+ *     tags:
  *        - auth
  *     summary: 회원가입
  *     requestBody:
@@ -44,7 +44,7 @@ router.post("/register", register);
  * @swagger
  * /api/auth/checkemail:
  *   post:
- *       tags:
+ *     tags:
  *        - auth
  *     summary: 이메일 중복 확인
  *     requestBody:
@@ -65,7 +65,7 @@ router.post("/checkemail", checkEmail);
  * @swagger
  * /api/auth/login:
  *   post:
- *      tags:
+ *     tags:
  *        - auth
  *     summary: 로그인
  *     requestBody:
@@ -90,7 +90,7 @@ router.post("/login", login);
  * @swagger
  * /api/auth/google:
  *   post:
- *      tags:
+ *     tags:
  *        - auth
  *     summary: 구글 로그인
  *     requestBody:
@@ -111,7 +111,7 @@ router.post("/google", googleLogin);
  * @swagger
  * /api/auth/resetpassword:
  *   post:
- *      tags:
+ *     tags:
  *        - auth
  *     summary: 비밀번호 찾기
  *     requestBody:
