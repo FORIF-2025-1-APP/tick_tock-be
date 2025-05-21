@@ -10,8 +10,8 @@ const router = Router();
  * @swagger
  * /api/category:
  *   post:
- *         tags:
- *        - calendar
+ *     tags:
+ *       - calendar
  *     summary: 카테고리 생성
  *     requestBody:
  *       required: true
@@ -31,12 +31,13 @@ const router = Router();
  *         description: 카테고리 생성 성공
  */
 router.post("/category", createCategory);
+
 /**
  * @swagger
  * /api/category/{categoryId}:
  *   delete:
- *        tags:
- *        - calendar
+ *     tags:
+ *       - calendar
  *     summary: 카테고리 삭제
  *     parameters:
  *       - name: categoryId

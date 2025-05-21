@@ -7,12 +7,13 @@ import {
 } from "../controllers/user.controller";
 
 const router = Router();
+
 /**
  * @swagger
  * /api/user/profile-image:
  *   patch:
- *           tags:
- *        - user
+ *     tags:
+ *       - user
  *     summary: 프로필 이미지 변경
  *     requestBody:
  *       content:
@@ -27,14 +28,14 @@ const router = Router();
  *       200:
  *         description: 프로필 이미지 변경 성공
  */
-
 router.patch("/user/profile-image", updateProfileImage);
+
 /**
  * @swagger
  * /api/user/password:
  *   patch:
- *           tags:
- *        - user
+ *     tags:
+ *       - user
  *     summary: 비밀번호 변경
  *     requestBody:
  *       content:
@@ -57,14 +58,14 @@ router.patch("/user/profile-image", updateProfileImage);
  *       400:
  *         description: 비밀번호 오류
  */
-
 router.patch("/user/password", changePassword);
+
 /**
  * @swagger
  * /api/user/nickname:
  *   patch:
- *           tags:
- *        - user
+ *     tags:
+ *       - user
  *     summary: 닉네임 변경
  *     requestBody:
  *       content:
@@ -79,20 +80,19 @@ router.patch("/user/password", changePassword);
  *       200:
  *         description: 닉네임 변경 성공
  */
-
 router.patch("/user/nickname", updateNickname);
+
 /**
  * @swagger
  * /api/user:
  *   delete:
- *          tags:
- *        - user
+ *     tags:
+ *       - user
  *     summary: 회원 탈퇴
  *     responses:
  *       200:
  *         description: 회원 탈퇴 성공
  */
-
 router.delete("/user", deleteUser);
 
 export default router;

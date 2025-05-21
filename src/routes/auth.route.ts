@@ -6,20 +6,15 @@ import {
   googleLogin,
   resetPassword,
 } from "../controllers/auth.controller";
-// import { register, checkEmail, login } from "../controllers/auth.controller";
 
 const router = Router();
-
-// router.post("/register", register);
-// router.post("/checkemail", checkEmail);
-// router.post("/login", login);
 
 /**
  * @swagger
  * /api/auth/register:
  *   post:
  *     tags:
- *        - auth
+ *       - auth
  *     summary: 회원가입
  *     requestBody:
  *       required: true
@@ -45,9 +40,10 @@ router.post("/register", register);
  * /api/auth/checkemail:
  *   post:
  *     tags:
- *        - auth
+ *       - auth
  *     summary: 이메일 중복 확인
  *     requestBody:
+ *       required: true
  *       content:
  *         application/json:
  *           schema:
@@ -66,7 +62,7 @@ router.post("/checkemail", checkEmail);
  * /api/auth/login:
  *   post:
  *     tags:
- *        - auth
+ *       - auth
  *     summary: 로그인
  *     requestBody:
  *       required: true
@@ -86,14 +82,16 @@ router.post("/checkemail", checkEmail);
  *         description: 로그인 실패
  */
 router.post("/login", login);
+
 /**
  * @swagger
  * /api/auth/google:
  *   post:
  *     tags:
- *        - auth
+ *       - auth
  *     summary: 구글 로그인
  *     requestBody:
+ *       required: true
  *       content:
  *         application/json:
  *           schema:
@@ -105,16 +103,17 @@ router.post("/login", login);
  *       200:
  *         description: 구글 로그인 성공
  */
-
 router.post("/google", googleLogin);
+
 /**
  * @swagger
  * /api/auth/resetpassword:
  *   post:
  *     tags:
- *        - auth
+ *       - auth
  *     summary: 비밀번호 찾기
  *     requestBody:
+ *       required: true
  *       content:
  *         application/json:
  *           schema:
@@ -128,6 +127,6 @@ router.post("/google", googleLogin);
  *       404:
  *         description: 해당 이메일 없음
  */
-router.post("/resetpassword", resetPassword); // 비밀번호 변경
+router.post("/resetpassword", resetPassword);
 
 export default router;
