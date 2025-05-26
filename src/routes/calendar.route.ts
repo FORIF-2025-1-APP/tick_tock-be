@@ -1,11 +1,12 @@
 import { Router } from "express";
+import { authenticate } from "../middleware/auth";
 import {
   getCalendar,
   getCalendarById,
-  bringTodoByDate,
+  // bringTodoByDate,
   addSchedule,
   updateSchedule,
-  updateTodoDone,
+  // updateTodoDone,
 } from "../controllers/calendar.controller";
 
 const router = Router();
@@ -21,7 +22,7 @@ const router = Router();
  *       200:
  *         description: 캘린더 리스트 반환
  */
-router.get("/calendar", getCalendar);
+router.get("/calendar", authenticate, getCalendar);
 
 /**
  * @swagger
@@ -40,7 +41,7 @@ router.get("/calendar", getCalendar);
  *       200:
  *         description: 캘린더 + 카테고리 정보 반환
  */
-router.get("/calendar/:id/category", getCalendarById);
+router.get("/calendar/:id/category", authenticate, getCalendarById);
 
 /**
  * @swagger
@@ -62,7 +63,7 @@ router.get("/calendar/:id/category", getCalendarById);
  *       200:
  *         description: 해당 날짜의 투두 반환
  */
-router.post("/todo/bringtodo", bringTodoByDate);
+// router.post("/todo/bringtodo", bringTodoByDate);
 
 /**
  * @swagger
@@ -126,7 +127,7 @@ router.post("/schedule/addschedule", addSchedule);
  *       200:
  *         description: 일정 수정 성공
  */
-router.put("/schedule/updateschedule", updateSchedule);
+router.put("/schedule/updateschedule", authenticate, updateSchedule);
 
 /**
  * @swagger
@@ -149,6 +150,6 @@ router.put("/schedule/updateschedule", updateSchedule);
  *       200:
  *         description: 투두 업데이트 성공
  */
-router.patch("/schedule/updatetodo", updateTodoDone);
+// router.patch("/schedule/updatetodo", updateTodoDone);
 
 export default router;

@@ -42,9 +42,11 @@ model Category {
 model Todo {
   id         String     @id @default(uuid())
   title      String
+  date       DateTime //추가
   startTime  DateTime
   endTime    DateTime?
   repeat     RepeatCycle
+  recurringEventId  String? // 반복 원본 ID (없으면 단건)
   isDone     Boolean    @default(false)
   user       User       @relation(fields: [userId], references: [id])
   userId     String
@@ -54,9 +56,11 @@ model Todo {
 model Calendar {
   id         String     @id @default(uuid())
   title      String
+  date       DateTime //추가
   startTime  DateTime
   endTime    DateTime?
   repeat     RepeatCycle
+  recurringEventId  String? // 반복 원본 ID (없으면 단건)
   user       User       @relation(fields: [userId], references: [id])
   userId     String
   categories CalendarOnCategory[]
