@@ -1,70 +1,29 @@
-// import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 
-// const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-// const userData: Prisma.UserCreateInput[] = [
-//   {
-//     name: 'Alice',
-//     email: 'alice@prisma.io',
-//     posts: {
-//       create: [
-//         {
-//           title: 'Join the Prisma Discord',
-//           content: 'https://pris.ly/discord',
-//           published: true,
-//         },
-//       ],
-//     },
-//   },
-//   {
-//     name: 'Nilu',
-//     email: 'nilu@prisma.io',
-//     posts: {
-//       create: [
-//         {
-//           title: 'Follow Prisma on Twitter',
-//           content: 'https://www.twitter.com/prisma',
-//           published: true,
-//         },
-//       ],
-//     },
-//   },
-//   {
-//     name: 'Mahmoud',
-//     email: 'mahmoud@prisma.io',
-//     posts: {
-//       create: [
-//         {
-//           title: 'Ask a question about Prisma on GitHub',
-//           content: 'https://www.github.com/prisma/prisma/discussions',
-//           published: true,
-//         },
-//         {
-//           title: 'Prisma on YouTube',
-//           content: 'https://pris.ly/youtube',
-//         },
-//       ],
-//     },
-//   },
-// ]
+async function main() {
+  const hashedPassword = await bcrypt.hash("test1234", 10);
 
-// async function main() {
-//   console.log(`Start seeding ...`)
-//   for (const u of userData) {
-//     const user = await prisma.user.create({
-//       data: u,
-//     })
-//     console.log(`Created user with id: ${user.id}`)
-//   }
-//   console.log(`Seeding finished.`)
-// }
+  //더미유저생성코드
+  const user = await prisma.user.upsert({
+    where: { email: "dummy@example.com" },
+    update: {},
+    create: {
+      id: "bfc3efb4-1e9e-4a13-94b7-32d8d7123abc",
+      email: "dummy@example.com",
+      password: hashedPassword,
+      nickname: "더미유저저",
+    },
+  });
+  console.log("더미 유저 생성 완료:", user);
+}
 
-// main()
-//   .then(async () => {
-//     await prisma.$disconnect()
-//   })
-//   .catch(async (e) => {
-//     console.error(e)
-//     await prisma.$disconnect()
-//     process.exit(1)
-//   })
+main()
+  .then(() => prisma.$disconnect())
+  .catch((e) => {
+    console.error(e);
+    prisma.$disconnect();
+    process.exit(1);
+  });

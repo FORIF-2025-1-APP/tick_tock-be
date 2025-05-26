@@ -5,11 +5,13 @@ import todoRouter from "./routes/todo.route";
 import userRouter from "./routes/user.route";
 import friendRouter from "./routes/friend.route";
 import categoryRouter from "./routes/category.route";
+import { authenticate } from "./middleware/auth";
 
 import { setupSwagger } from "./swagger";
 
 const app = express();
 app.use(express.json());
+app.use(authenticate); // 모든 요청에 대해 인증 적용
 
 app.use("/api/auth", authRoutes);
 app.use("/api", calendarRouter); //캘린더?

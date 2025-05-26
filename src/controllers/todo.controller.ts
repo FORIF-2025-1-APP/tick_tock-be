@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-// ✅ POST /api/todo/addtodo
+// POST /api/todo/addtodo
 export const addTodo = async (req: Request, res: Response): Promise<any> => {
   const { id, title, startTime, endTime, repeat, categories, isDone } =
     req.body;
@@ -22,7 +22,7 @@ export const addTodo = async (req: Request, res: Response): Promise<any> => {
   });
 };
 
-// ✅ PATCH /api/todo/updatecategory
+// PATCH /api/todo/updatecategory
 export const updateTodoCategory = async (
   req: Request,
   res: Response
@@ -45,7 +45,7 @@ export const updateTodoCategory = async (
   });
 };
 
-// ✅ DELETE /api/todo/deletetodo
+// DELETE /api/todo/deletetodo
 export const deleteTodo = async (req: Request, res: Response): Promise<any> => {
   const { id } = req.body;
 
@@ -54,7 +54,7 @@ export const deleteTodo = async (req: Request, res: Response): Promise<any> => {
   });
 };
 
-// ✅ GET /api/todo/bringtodo
+// GET /api/todo/bringtodo
 export const bringTodo = async (req: Request, res: Response): Promise<any> => {
   const { date } = req.body;
 
@@ -75,7 +75,7 @@ export const bringTodo = async (req: Request, res: Response): Promise<any> => {
   });
 };
 
-// ✅ GET /api/todo/bringtodonum
+// GET /api/todo/bringtodonum
 export const bringTodoDoneCount = async (
   req: Request,
   res: Response

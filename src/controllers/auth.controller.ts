@@ -62,7 +62,7 @@ export const checkEmail = async (req: Request, res: Response): Promise<any> => {
   return res.status(200).json({ message: "사용 가능한 이메일입니다." });
 };
 
-// ✅ 로그인 (더미)
+// 로그인 (더미)
 export const login = async (req: Request, res: Response): Promise<any> => {
   const { email, password } = req.body;
 
@@ -108,7 +108,7 @@ export const googleLogin = async (
   });
 };
 
-// ✅ 비밀번호 찾기 (더미)
+// 비밀번호 찾기 (더미)
 export const resetPassword = async (
   req: Request,
   res: Response
