@@ -11,14 +11,14 @@ import { setupSwagger } from "./swagger";
 
 const app = express();
 app.use(express.json());
-app.use(authenticate); // 모든 요청에 대해 인증 적용
+//app.use(authenticate); // 모든 요청에 대해 인증 적용
 
 app.use("/api/auth", authRoutes);
-app.use("/api", calendarRouter); //캘린더?
-app.use("/api", todoRouter);
-app.use("/api", userRouter);
-app.use("/api", friendRouter);
-app.use("/api", categoryRouter);
+app.use("/api", authenticate, calendarRouter); //캘린더?
+app.use("/api", authenticate, todoRouter);
+app.use("/api", authenticate, userRouter);
+app.use("/api", authenticate, friendRouter);
+app.use("/api", authenticate, categoryRouter);
 
 setupSwagger(app);
 

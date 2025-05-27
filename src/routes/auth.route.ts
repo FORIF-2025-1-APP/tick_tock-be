@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, RequestHandler } from "express";
 import {
   register,
   checkEmail,
@@ -6,6 +6,7 @@ import {
   googleLogin,
   resetPassword,
 } from "../controllers/auth.controller";
+
 
 const router = Router();
 
@@ -33,7 +34,7 @@ const router = Router();
  *       201:
  *         description: 회원가입 성공
  */
-router.post("/register", register);
+router.post("/register", register as RequestHandler);
 
 /**
  * @swagger
