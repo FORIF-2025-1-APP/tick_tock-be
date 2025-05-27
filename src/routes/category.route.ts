@@ -3,7 +3,6 @@ import {
   createCategory,
   deleteCategory,
 } from "../controllers/category.controller";
-import { authenticate } from "../middleware/auth";
 
 const router = Router();
 
@@ -31,7 +30,7 @@ const router = Router();
  *       201:
  *         description: 카테고리 생성 성공
  */
-router.post("/category", authenticate, createCategory);
+router.post("/category", createCategory);
 
 /**
  * @swagger
@@ -50,6 +49,6 @@ router.post("/category", authenticate, createCategory);
  *       200:
  *         description: 카테고리 삭제 성공
  */
-router.delete("/category/:categoryId", authenticate, deleteCategory);
+router.delete("/category/:categoryId", deleteCategory);
 
 export default router;

@@ -1,7 +1,7 @@
 // src/controllers/calendar.controller.ts
 import { Request, Response } from "express";
 
-// 캘린더 가져오기
+// ✅ 캘린더 가져오기
 export const getCalendar = async (
   req: Request,
   res: Response
@@ -25,7 +25,7 @@ export const getCalendar = async (
   });
 };
 
-// 특정 캘린더 + 카테고리 조회
+// ✅ 특정 캘린더 + 카테고리 조회
 export const getCalendarById = async (
   req: Request,
   res: Response
@@ -49,7 +49,7 @@ export const getCalendarById = async (
   });
 };
 
-// 특정 날짜 투두 불러오기
+// ✅ 특정 날짜 투두 불러오기
 export const bringTodoByDate = async (
   req: Request,
   res: Response
@@ -73,7 +73,7 @@ export const bringTodoByDate = async (
   });
 };
 
-// 일정 추가
+// ✅ 일정 추가
 export const addSchedule = async (
   req: Request,
   res: Response
@@ -96,7 +96,7 @@ export const addSchedule = async (
   });
 };
 
-// 일정 수정
+// ✅ 일정 수정
 export const updateSchedule = async (
   req: Request,
   res: Response
@@ -117,7 +117,7 @@ export const updateSchedule = async (
   });
 };
 
-// 투두 완료 상태 수정
+// ✅ 투두 완료 상태 수정
 export const updateTodoDone = async (
   req: Request,
   res: Response
