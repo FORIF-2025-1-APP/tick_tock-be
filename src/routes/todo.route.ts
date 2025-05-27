@@ -1,12 +1,10 @@
 import { Router } from "express";
-import { authenticate } from "../middleware/auth";
 import {
   addTodo,
   updateTodoCategory,
   deleteTodo,
   bringTodo,
   bringTodoDoneCount,
-  updateTodoDone,
 } from "../controllers/todo.controller";
 
 const router = Router();
@@ -44,7 +42,7 @@ const router = Router();
  *       200:
  *         description: 투두 추가 성공
  */
-router.post("/todo/addtodo", authenticate, addTodo);
+router.post("/todo/addtodo", addTodo);
 
 /**
  * @swagger
@@ -79,7 +77,7 @@ router.post("/todo/addtodo", authenticate, addTodo);
  *       200:
  *         description: 투두 수정 성공
  */
-router.patch("/todo/updatecategory", authenticate, updateTodoCategory);
+router.patch("/todo/updatecategory", updateTodoCategory);
 
 /**
  * @swagger
@@ -100,7 +98,7 @@ router.patch("/todo/updatecategory", authenticate, updateTodoCategory);
  *       200:
  *         description: 투두 삭제 성공
  */
-router.delete("/todo/deletetodo", authenticate, deleteTodo);
+router.delete("/todo/deletetodo", deleteTodo);
 
 /**
  * @swagger
@@ -122,7 +120,7 @@ router.delete("/todo/deletetodo", authenticate, deleteTodo);
  *       200:
  *         description: 해당 날짜의 투두 반환
  */
-router.post("/todo/bringtodo", authenticate, bringTodo);
+router.post("/todo/bringtodo", bringTodo);
 
 /**
  * @swagger
@@ -135,31 +133,6 @@ router.post("/todo/bringtodo", authenticate, bringTodo);
  *       200:
  *         description: 완료된 투두 수 반환
  */
-router.get("/todo/bringtodonum", authenticate, bringTodoDoneCount);
-
-/**
- * @swagger
- * /api/schedule/updatetodo:
- *   patch:
- *     tags:
- *       - todo
- *     summary: 투두 완료 상태 수정
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               id:
- *                 type: string
- *               isDone:
- *                 type: boolean
- *     responses:
- *       200:
- *         description: 투두 업데이트 성공
- */
-
-router.patch("/schedule/updatetodo", authenticate, updateTodoDone);
+router.get("/todo/bringtodonum", bringTodoDoneCount);
 
 export default router;
