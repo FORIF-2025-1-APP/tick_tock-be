@@ -189,25 +189,26 @@ export const deleteTodo = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-// //특정날짜 todo 불러오기
+//특정날짜 todo 불러오기
 export const bringTodo = async (req: Request, res: Response): Promise<any> => {
   const userId = req.user?.userId;
-  const dateParam = req.query.date as string;
+  const { date } = req.body;
 
   if (!userId) return res.status(401).json({ message: "Unauthorized" });
-  if (!dateParam) return res.status(400).json({ message: "Missing date" });
-
-  const targetDate = new Date(dateParam);
-  const nextDate = new Date(targetDate);
-  nextDate.setDate(nextDate.getDate() + 1);
+  if (!date) return res.status(400).json({ message: "Date is required" });
 
   try {
+    const startOfDay = new Date(date);
+    const endOfDay = new Date(date);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    // ✅ 해당 날짜 범위 내의 todo 조회 (userId도 필터 조건에 포함)
     const todos = await prisma.todo.findMany({
       where: {
         userId,
         date: {
-          gte: targetDate,
-          lt: nextDate,
+          gte: startOfDay, // 그 날의 시작 이상
+          lte: endOfDay, // 그 날의 끝 이하
         },
       },
       include: {
@@ -219,75 +220,26 @@ export const bringTodo = async (req: Request, res: Response): Promise<any> => {
       },
     });
 
+    const result = todos.map((todo) => ({
+      id: todo.id,
+      title: todo.title,
+      startTime: todo.startTime,
+      endTime: todo.endTime,
+      repeat: todo.repeat,
+      categories: todo.categories.map((c) => c.category.title),
+      isDone: todo.isDone,
+    }));
+
     return res.status(200).json({
       ok: true,
       message: "Get todo success",
-      data: todos.map((todo) => ({
-        id: todo.id,
-        title: todo.title,
-        startTime: todo.startTime,
-        endTime: todo.endTime,
-        repeat: todo.repeat,
-        categories: todo.categories.map((c) => c.category.title),
-        isDone: todo.isDone,
-      })),
+      data: result,
     });
   } catch (err) {
     console.error("bringTodo error:", err);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
-// export const bringTodo = async (req: Request, res: Response): Promise<any> => {
-//   const userId = req.user?.userId;
-//   const { date } = req.body;
-
-//   if (!userId) return res.status(401).json({ message: "Unauthorized" });
-//   if (!date) return res.status(400).json({ message: "Date is required" });
-
-//   try {
-//     const startOfDay = new Date(date);
-//     const endOfDay = new Date(date);
-//     endOfDay.setHours(23, 59, 59, 999);
-
-//     // ✅ 해당 날짜 범위 내의 todo 조회 (userId도 필터 조건에 포함)
-//     const todos = await prisma.todo.findMany({
-//       where: {
-//         userId,
-//         date: {
-//           gte: startOfDay, // 그 날의 시작 이상
-//           lte: endOfDay, // 그 날의 끝 이하
-//         },
-//       },
-//       include: {
-//         categories: {
-//           include: {
-//             category: true,
-//           },
-//         },
-//       },
-//     });
-
-//     const result = todos.map((todo) => ({
-//       id: todo.id,
-//       title: todo.title,
-//       startTime: todo.startTime,
-//       endTime: todo.endTime,
-//       repeat: todo.repeat,
-//       categories: todo.categories.map((c) => c.category.title),
-//       isDone: todo.isDone,
-//     }));
-
-//     return res.status(200).json({
-//       ok: true,
-//       message: "Get todo success",
-//       data: result,
-//     });
-//   } catch (err) {
-//     console.error("bringTodo error:", err);
-//     return res.status(500).json({ message: "Internal Server Error" });
-//   }
-// };
 
 //완료한 투두 수 가져오기
 export const bringTodoDoneCount = async (

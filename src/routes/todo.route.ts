@@ -13,23 +13,37 @@ const router = Router();
 
 /**
  * @swagger
- * /api/todo/bringtodo:
- *   get:
+ * /api/todo/addtodo:
+ *   post:
  *     tags:
  *       - todo
- *     summary: 특정 날짜의 투두 가져오기
- *     parameters:
- *       - in: query
- *         name: date
- *         required: true
- *         schema:
- *           type: string
- *           format: date
+ *     summary: 투두 추가
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *               title:
+ *                 type: string
+ *               startTime:
+ *                 type: string
+ *               endTime:
+ *                 type: string
+ *               repeat:
+ *                 type: string
+ *               categories:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               isDone:
+ *                 type: boolean
  *     responses:
  *       200:
- *         description: 해당 날짜의 투두 리스트 반환
+ *         description: 투두 추가 성공
  */
-
 router.post("/todo/addtodo", authenticate, addTodo);
 
 /**
