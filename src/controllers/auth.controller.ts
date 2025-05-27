@@ -195,7 +195,7 @@ export const googleLogin = async (
         data: {
           email: email,
           nickname: name || email.split("@")[0],
-          //image: picture,
+          image: picture,
           password: crypto.randomBytes(32).toString("hex"), // Random password for Google users
           //agreed: true
         },
@@ -205,7 +205,7 @@ export const googleLogin = async (
       user = await prisma.user.update({
         where: { id: user.id },
         data: {
-          //image: picture || user.image,
+          image: picture || user.image,
         },
       });
     }
@@ -224,7 +224,7 @@ export const googleLogin = async (
         id: user.id,
         email: user.email,
         username: user.nickname,
-        //image: user.image
+        image: user.image,
       },
     });
   } catch (error) {
