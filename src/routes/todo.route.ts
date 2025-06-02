@@ -29,7 +29,6 @@ const router = Router();
  *       200:
  *         description: 해당 날짜의 투두 리스트 반환
  */
-
 router.post("/todo/addtodo", authenticate, addTodo);
 
 /**

@@ -7,6 +7,7 @@ import {
   addSchedule,
   updateSchedule,
   // updateTodoDone,
+  deleteSchedule,
 } from "../controllers/calendar.controller";
 
 const router = Router();
@@ -151,5 +152,28 @@ router.put("/schedule/updateschedule", authenticate, updateSchedule);
  *         description: 투두 업데이트 성공
  */
 // router.patch("/schedule/updatetodo", updateTodoDone);
+
+/**
+ * @swagger
+ * /api/schedule/deleteschedule:
+ *   delete:
+ *     tags:
+ *       - calendar
+ *     summary: 일정 삭제
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *                 example: "calendar-uuid"
+ *     responses:
+ *       200:
+ *         description: 일정 삭제 성공
+ */
+router.delete("/schedule/deleteschedule", authenticate, deleteSchedule);
 
 export default router;

@@ -246,6 +246,43 @@ export const getCalendarById = async (
   }
 };
 
+//일정 삭제
+export const deleteSchedule = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  const userId = req.user?.userId;
+  const { id } = req.body;
+
+  if (!userId) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  try {
+    // 해당 일정이 본인의 일정인지 확인
+    const schedule = await prisma.calendar.findUnique({
+      where: { id },
+    });
+
+    if (!schedule || schedule.userId !== userId) {
+      return res.status(404).json({ ok: false, message: "Schedule not found" });
+    }
+
+    // 삭제 실행
+    await prisma.calendar.delete({
+      where: { id },
+    });
+
+    return res.status(200).json({
+      ok: true,
+      message: "Schedule deleted successfully",
+    });
+  } catch (err) {
+    console.error("deleteSchedule error:", err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 // // 캘린더 가져오기
 // export const getCalendar = async (
 //   req: Request,
