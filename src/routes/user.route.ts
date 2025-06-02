@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  getProfile,
   updateProfileImage,
   changePassword,
   updateNickname,
@@ -7,6 +8,40 @@ import {
 } from "../controllers/user.controller";
 
 const router = Router();
+
+/**
+ * @swagger
+ * /api/user:
+ *   get:
+ *     tags:
+ *       - user
+ *     summary: 프로필 조회
+ *     responseBody:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           example: "user-id-001"
+ *         email:
+ *           type: string
+ *           example: "test@example.com"
+ *         nickname:
+ *           type: string
+ *           example: "user-nickname"
+ *         image:
+ *           type: string
+ *           example: "https://example.com/profile.png"
+ *         streak:
+ *           type: number
+ *           example: 10
+ *         maxStreak:
+ *           type: number
+ *           example: 10
+ *     responses:
+ *       200:
+ *         description: 프로필 이미지 변경 성공
+ */
+router.get("/user", getProfile);
 
 /**
  * @swagger
